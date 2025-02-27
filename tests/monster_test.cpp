@@ -475,7 +475,10 @@ void MutateFlatBuffersTest(uint8_t *flatbuf, std::size_t length) {
     item->mutate_hp(0);
     TEST_EQ(item->hp(), 0);
     item->mutate_hp(1000);
-    break;  // one iteration is enough, just testing compilation
+
+    // This results in an error about unreachable code error from the Microsoft
+    // tools. Iterating over all the elements is fine.
+    //break;  // one iteration is enough, just testing compilation
   }
 
   // Mutate via LookupByKey
